@@ -1,0 +1,40 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-sm-4">
+            <div class="card border-danger rounded">
+                <div class="card-body">
+                    <h3 class="card-title text-black text-center">Change Password 1 Page</h3>
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="form-group">
+                                {{ field.label_tag }}
+                                {{ field }}
+                                {% if field.errors %}
+                                    {% for error in field.errors %}
+                                        <p class="text-danger">{{ error }}</p>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        {% if form.non_field_errors %}
+                        {% for error in form.non_field_errors %}
+                            <p class="alert alert-danger my-3">{{ error }}</p>
+                        {% endfor %}
+                        {% endif %}
+                        <div class="text-center">
+                            <input type="submit" value="Submit" class="btn btn-primary btn-lg mt-3">
+                        </div>
+                    </form>
+                    <a href="{% url 'logout' %}"> LogOut</a>
+                    <a href="{% url 'profile' %}"> Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

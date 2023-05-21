@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="stylesheet" href="{% static '/blog/css/bootstrap.css'%}">
+    <link rel="stylesheet" href="{% static '/blog/css/style.css'%}">
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="{% static '/blog/blog.png'%}" />
+    <!-- Custom Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+
+    <title>MiniBlog</title>
+</head>
+<body>
+<div class="container-fluid bg-dark">
+    {% include 'blog/navbar.html'%}
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>
+            {% block title %}
+            {% endblock title %} </h3>
+
+            {% block msg %}
+            {% endblock msg %}
+        </div>
+    </div>
+    <div class="row">
+        {% block side %}
+        {% endblock side %}
+
+        {% block content %}
+        {% endblock content %}
+    </div>
+</div>
+
+<!-- Add these lines in the <head> section of your HTML -->
+
+    
+    
+<script src="{% static 'blog/js/jquery.js'%}"></script>
+<script src="{% static 'blog/js/popper.js'%}"></script>
+<script src="{% static 'blog/js/bootstrap.js'%}"></script>
+<script src="{% static 'blog/js/script.js'%}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <!-- Bootstrap core JS-->
+{% comment %} <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> {% endcomment %}
+</body>
+</html>

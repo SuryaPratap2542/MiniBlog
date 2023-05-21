@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block msg %}
+    {% if messages %}
+    <div class="d-flex justify-content-center align-items-center my-1 ">
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{ message.tags }} alert-dismissible fade show  alert-sm py-2"  role="alert" {% endif %}>
+            <strong>{{ message }}</strong> 
+            <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></span></button>
+          </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+{% endblock msg %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-sm-4">
+            <h3 class="card-title text-black text-center">Contact Page</h3>
+
+            <div class="card border-danger rounded">
+                <div class="card-body">
+                    <form method="post" class="rounded" novalidate>
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {{ field }}
+                            <small class="text-danger">{{ field.errors|striptags }}</small>
+                        </div>
+                        {% endfor %}
+                        {% if form.non_field_errors %}
+                        {% for error in form.non_field_errors %}
+                            <p class="alert alert-danger my-3">{{ error }}</p>
+                        {% endfor %}
+                        {% endif %}
+                    <div class="text-center">
+                        <input type="submit" value="Send" class="btn btn-success my-3">
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

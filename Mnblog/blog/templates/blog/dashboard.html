@@ -1,0 +1,66 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block msg %}
+    {% if messages %}
+    <div class="d-flex justify-content-center align-items-center my-1 ">
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{ message.tags }} alert-dismissible fade show  alert-sm py-2"  role="alert" {% endif %}>
+            <strong>{{ message }}</strong> 
+            <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></span></button>
+          </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+{% endblock msg %}
+
+{% block side %}
+    <div class="col-sm-2 text-black my-5 text-center">
+        <h4 class="my-5">Profile</h4>
+        <h5>{{full_name}}</h5>
+        {% for group in groups  %}
+            <p> {{group.name}}</p>
+        {% endfor %}
+    </div>
+{% endblock side %}
+
+{% block content %}
+<div class="col-sm-10">
+    <h3 class="text-black my-5">Dashboard Page</h3>
+    <a href="{% url 'addpost' %}"class="btn btn-success">Add Post </a>
+    <h4 class="text-center alert alert-info mt-3">Show Post Information</h4>
+
+    {% if posts %}
+    <table class="table table-hover bg-white">
+        <thead>
+            <tr class="text-center">
+                <th scope="col" style="width:2%">ID</th>
+                <th scope="col" style="width:28%">Title</th>
+                <th scope="col" style="width:55%">Description</th>
+                <th scope="col" style="width:15%">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <th scope="row">{{ post.id }}</th>
+                <td>{{ post.title }}</td>
+                <td>{{ post.desc }}</td>
+                <td class="text-center">
+                    <a href="{% url 'updatepost' post.id %}" class="btn btn-warning btn-sm">Edit</a>
+                    {% if perms.blog.delete_post %}
+                    <form action="{% url 'deletepost' post.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-danger btn-sm" value="Delete">
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h4 class="text-center alert alert-warning">No posts available.</h4>
+    {% endif %}
+</div>
+{% endblock content %}
