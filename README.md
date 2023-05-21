@@ -22,8 +22,9 @@ MiniBlog is a simple and user-friendly blog website where users can create and s
 Here are some screenshots of our blog website:
 
 ### Landing Page
-![Landing Page]<img width="907" alt="image" src="https://github.com/SuryaPratap2542/MiniBlog/assets/89827931/d32c8704-5703-4759-8870-537f1f3f3bdb">
 Description: The landing page showcases a beautiful and responsive design with a hero image and a clear call-to-action.
+<img width="907" alt="image" src="https://github.com/SuryaPratap2542/MiniBlog/assets/89827931/d32c8704-5703-4759-8870-537f1f3f3bdb">
+
 
 ### Add Post
 ![Add Post](path/to/add-post-image.png)
